@@ -6,3 +6,8 @@
 h1, h2, h3 {
   text-align: center;
 }
+
+img {
+  max-width: 250px;
+  align-self: center;
+}

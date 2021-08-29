@@ -1,12 +1,16 @@
+// all tasks done except for the 1st
+// time to complete: cca 1 work day
+
 // BASIC IMPORTS
 // other than CSS, Bootstrap classes and Reactstrap components used for styling
 
 import './App.css';
 import React from 'react';
 import { Button } from 'reactstrap';
+import configData from "./config.json";
 
 // ANSWERS DATA
-// used for randomize function
+// used for the randomize function
 
 const values = {
   q1: ["small", "big", "medium-sized", "extra large"],
@@ -38,6 +42,7 @@ class App extends React.Component {
     document.getElementById("q1").style.display = "block";
     document.getElementById("start").style.display = "none";
     document.getElementById("randomize").style.display = "none";
+    document.getElementById("imgstart").style.display = "none";
   }
 
   randomize() {
@@ -132,6 +137,7 @@ class App extends React.Component {
     document.getElementById("retrytest").style.display = "none";
     document.getElementById("start").style.display = "block";
     document.getElementById("randomize").style.display = "block";
+    document.getElementById("imgstart").style.display = "block";
   }
 
   // RENDER
@@ -152,8 +158,11 @@ class App extends React.Component {
 
             {/* STARTING SCREEN */}
 
-            <Button color="primary" id="start" className="m-2" onClick={this.startquiz}>Start</Button>
-            <Button color="secondary" id="randomize" className="m-2" onClick={() => this.randomize()}>Randomize</Button>
+            <div className="d-flex flex-column">
+              <img src="https://image.flaticon.com/icons/png/512/875/875011.png" alt="clown fish" id="imgstart" className="m-5" />
+              <Button color="primary" id="start" className="m-2" onClick={this.startquiz}>Start</Button>
+              <Button color="secondary" id="randomize" className="m-2" onClick={() => this.randomize()}>Randomize</Button>
+            </div>
 
             {/* FIRST QUESTION */}
 
@@ -204,7 +213,7 @@ class App extends React.Component {
               {/* PET NAME */}
 
               <h3 id="nameofpet" style={{display: "none"}}>The name of my pet is: {this.state.petname}.</h3>
-              <input id="petnameinput" style={{display: "none"}} onChange={this.handleinput} placeholder="Enter name"/>
+              <input id="petnameinput" maxLength={configData.maxinputlength} style={{display: "none"}} onChange={this.handleinput} placeholder="Enter name"/>
 
               {/* FINAL BUTTONS */}
 
@@ -215,6 +224,7 @@ class App extends React.Component {
           </div>
         </div>
       </div>
+
     );
 
   }
